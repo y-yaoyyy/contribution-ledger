@@ -1,6 +1,6 @@
 {
   "name": "contributionledger",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Offline evidence ledger that turns engineering session summaries into reviewable OSS contribution cases.",
   "type": "module",
   "bin": {
@@ -13,7 +13,7 @@
     "bin",
     "src",
     "docs",
-    "README.md",
+    "README*.md",
     "LICENSE"
   ],
   "scripts": {
