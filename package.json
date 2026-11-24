@@ -1,0 +1,35 @@
+{
+  "name": "session2oss",
+  "version": "0.1.0",
+  "description": "Offline evidence ledger that turns engineering session summaries into reviewable OSS contribution cases.",
+  "type": "module",
+  "bin": {
+    "session2oss": "bin/session2oss.mjs"
+  },
+  "exports": {
+    ".": "./src/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check bin/session2oss.mjs && node --check src/cli.mjs && node --check src/inventory.mjs && node --check src/rules.mjs && node --check src/extract.mjs && node --check src/cluster.mjs && node --check src/render.mjs && node --check src/privacy.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "session",
+    "evidence",
+    "open-source",
+    "contributions",
+    "debugging",
+    "offline"
+  ],
+  "license": "MIT"
+}
