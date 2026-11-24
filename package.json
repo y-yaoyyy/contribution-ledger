@@ -23,6 +23,14 @@
   "engines": {
     "node": ">=22"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/y-yaoyyy/session2oss.git"
+  },
+  "homepage": "https://github.com/y-yaoyyy/session2oss#readme",
+  "bugs": {
+    "url": "https://github.com/y-yaoyyy/session2oss/issues"
+  },
   "keywords": [
     "session",
     "evidence",
