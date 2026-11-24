@@ -1,10 +1,10 @@
 {
-  "name": "session2oss",
-  "version": "0.1.0",
+  "name": "contributionledger",
+  "version": "0.1.1",
   "description": "Offline evidence ledger that turns engineering session summaries into reviewable OSS contribution cases.",
   "type": "module",
   "bin": {
-    "session2oss": "bin/session2oss.mjs"
+    "contributionledger": "bin/contributionledger.mjs"
   },
   "exports": {
     ".": "./src/cli.mjs"
@@ -18,18 +18,18 @@
   ],
   "scripts": {
     "test": "node --test",
-    "check": "node --check bin/session2oss.mjs && node --check src/cli.mjs && node --check src/inventory.mjs && node --check src/rules.mjs && node --check src/extract.mjs && node --check src/cluster.mjs && node --check src/render.mjs && node --check src/privacy.mjs"
+    "check": "node --check bin/contributionledger.mjs && node --check src/cli.mjs && node --check src/inventory.mjs && node --check src/rules.mjs && node --check src/extract.mjs && node --check src/cluster.mjs && node --check src/render.mjs && node --check src/privacy.mjs"
   },
   "engines": {
     "node": ">=22"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/y-yaoyyy/session2oss.git"
+    "url": "git+https://github.com/y-yaoyyy/contribution-ledger.git"
   },
-  "homepage": "https://github.com/y-yaoyyy/session2oss#readme",
+  "homepage": "https://github.com/y-yaoyyy/contribution-ledger#readme",
   "bugs": {
-    "url": "https://github.com/y-yaoyyy/session2oss/issues"
+    "url": "https://github.com/y-yaoyyy/contribution-ledger/issues"
   },
   "keywords": [
     "session",

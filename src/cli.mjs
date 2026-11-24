@@ -9,14 +9,14 @@ import { renderReport } from "./render.mjs";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PACKAGE_PATH = path.resolve(HERE, "..", "package.json");
 
-const HELP = `Session2OSS — turn compressed session summaries into an evidence ledger.
+const HELP = `ContributionLedger — turn compressed session summaries into an evidence ledger.
 
 Usage:
-  session2oss --input <sessions.jsonl> [options]
+  contributionledger --input <sessions.jsonl> [options]
 
 Options:
   -i, --input <file>       JSONL inventory to read (required)
-  -o, --out <dir>          output directory (default: ./session2oss-out)
+  -o, --out <dir>          output directory (default: ./contributionledger-out)
       --min-sessions <n>   only keep cases seen in at least n sessions (default: 1)
   -h, --help               show this help
   -v, --version            show the version
@@ -43,7 +43,7 @@ function takeValue(argv, index, flag) {
 export function parseArgs(argv) {
   const options = {
     input: null,
-    out: "session2oss-out",
+    out: "contributionledger-out",
     minSessions: 1,
     help: false,
     version: false,
@@ -118,7 +118,7 @@ export async function run(argv = process.argv.slice(2), io = {}) {
     options = parseArgs(argv);
   } catch (error) {
     if (error instanceof UsageError) {
-      stderr.write(`session2oss: ${error.message}\n\n${HELP}`);
+      stderr.write(`contributionledger: ${error.message}\n\n${HELP}`);
       return 1;
     }
     throw error;
@@ -133,19 +133,19 @@ export async function run(argv = process.argv.slice(2), io = {}) {
     return 0;
   }
   if (options.input === null) {
-    stderr.write(`session2oss: --input is required\n\n${HELP}`);
+    stderr.write(`contributionledger: --input is required\n\n${HELP}`);
     return 1;
   }
 
   const input = path.resolve(options.input);
   if (!fs.existsSync(input) || !fs.statSync(input).isFile()) {
-    stderr.write(`session2oss: input is not a file: ${input}\n`);
+    stderr.write(`contributionledger: input is not a file: ${input}\n`);
     return 1;
   }
 
   const outDir = path.resolve(options.out);
   if (outDir === input) {
-    stderr.write("session2oss: output directory cannot be the input file\n");
+    stderr.write("contributionledger: output directory cannot be the input file\n");
     return 1;
   }
 
@@ -179,13 +179,13 @@ export async function run(argv = process.argv.slice(2), io = {}) {
     writeFileAtomic(path.join(outDir, "cases.json"), `${JSON.stringify(payload, null, 2)}\n`);
 
     stdout.write(
-      `session2oss: ${summary.cases} case(s) from ${summary.sessions} session(s)\n` +
+      `contributionledger: ${summary.cases} case(s) from ${summary.sessions} session(s)\n` +
         `  report: ${path.join(outDir, "report.md")}\n` +
         `  cases:  ${path.join(outDir, "cases.json")}\n`,
     );
     return 0;
   } catch (error) {
-    stderr.write(`session2oss: ${error.message}\n`);
+    stderr.write(`contributionledger: ${error.message}\n`);
     return 1;
   }
 }

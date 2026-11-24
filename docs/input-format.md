@@ -1,6 +1,6 @@
 # Input format
 
-Session2OSS reads **JSON Lines** (`.jsonl`): one JSON object per line, no trailing comma, UTF-8.
+ContributionLedger reads **JSON Lines** (`.jsonl`): one JSON object per line, no trailing comma, UTF-8.
 
 ## Session object
 
@@ -78,4 +78,4 @@ for (const item of sessions.sessions) {
 out.end();
 ```
 
-This example is illustrative. Session2OSS itself makes no network calls.
+This example is illustrative. ContributionLedger itself makes no network calls.

@@ -13,7 +13,7 @@ function stageLabel(stage) {
 
 export function renderReport(cases, meta) {
   const lines = [];
-  lines.push("# Session2OSS evidence report");
+  lines.push("# ContributionLedger evidence report");
   lines.push("");
   lines.push("> This is a historical evidence ledger built from compressed session summaries.");
   lines.push("> A reported stage is not a current upstream status. Reproduce before acting.");

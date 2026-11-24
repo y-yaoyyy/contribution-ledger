@@ -1,8 +1,8 @@
-# Session2OSS
+# ContributionLedger
 
 Turn compressed engineering-session summaries into a reviewable ledger of possible open-source contributions.
 
-Session2OSS is deliberately small and deterministic:
+ContributionLedger is deliberately small and deterministic:
 
 - **Offline.** No network calls, no LLM calls, no database.
 - **Evidence first.** Every case points back to a session id, block index, and topic.
@@ -13,7 +13,7 @@ It is not an automatic issue generator. It produces leads for a human to reprodu
 
 ## Why
 
-Long-running agent sessions contain useful debugging evidence, but the evidence is scattered across compressed blocks. Copying summaries into a public issue is noisy and can leak private data. Session2OSS extracts only the reproducible shape:
+Long-running agent sessions contain useful debugging evidence, but the evidence is scattered across compressed blocks. Copying summaries into a public issue is noisy and can leak private data. ContributionLedger extracts only the reproducible shape:
 
 - component and symptom
 - distinct sessions where the symptom appeared
@@ -30,14 +30,14 @@ Long-running agent sessions contain useful debugging evidence, but the evidence 
 ## Usage
 
 ```bash
-node bin/session2oss.mjs --input sessions.jsonl --out ./session2oss-out
+node bin/contributionledger.mjs --input sessions.jsonl --out ./contributionledger-out
 ```
 
 Options:
 
 ```text
 -i, --input <file>       JSONL inventory to read (required)
--o, --out <dir>          output directory (default: ./session2oss-out)
+-o, --out <dir>          output directory (default: ./contributionledger-out)
     --min-sessions <n>   only keep cases seen in at least n sessions (default: 1)
 -h, --help               show help
 -v, --version            show version
@@ -46,7 +46,7 @@ Options:
 Output:
 
 ```text
-session2oss-out/
+contributionledger-out/
   report.md     human-readable queue and evidence
   cases.json    structured cases for further tooling
 ```
@@ -110,7 +110,7 @@ No scanner is perfect. Review `cases.json` before sharing it.
 ```bash
 npm test
 npm run check
-node bin/session2oss.mjs --input tests/fixtures/synthetic.jsonl --out /tmp/session2oss-demo
+node bin/contributionledger.mjs --input tests/fixtures/synthetic.jsonl --out /tmp/contributionledger-demo
 ```
 
 The test suite uses only `node:test` and the Node standard library.

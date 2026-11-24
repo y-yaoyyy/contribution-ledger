@@ -67,7 +67,7 @@ The highest reported stage wins for the queue. This is a historical claim, not a
 
 1. Add a rule to `DEFAULT_RULES`.
 2. Add a synthetic block to `tests/fixtures/synthetic.jsonl`.
-3. Assert the case id, component, and expected stage in `tests/session2oss.test.mjs`.
+3. Assert the case id, component, and expected stage in `tests/contributionledger.test.mjs`.
 4. Run `npm test` and dogfood on a real inventory.
 
 Keep rule text in English or Chinese; the matcher lowercases ASCII and leaves CJK intact.

@@ -1,5 +1,5 @@
 node_modules/
-session2oss-out/
+contributionledger-out/
 *.log
 .DS_Store
 coverage/

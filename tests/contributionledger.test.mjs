@@ -18,7 +18,7 @@ function silent() {
 }
 
 function tempDir() {
-  return fs.mkdtempSync(path.join(os.tmpdir(), "session2oss-"));
+  return fs.mkdtempSync(path.join(os.tmpdir(), "contributionledger-"));
 }
 
 test("inventory reads blockDetails and blocks, and rejects malformed lines", async () => {
@@ -101,7 +101,7 @@ test("CLI writes report and cases without leaking raw summaries or secrets", asy
 
     const report = fs.readFileSync(path.join(out, "report.md"), "utf8");
     const cases = fs.readFileSync(path.join(out, "cases.json"), "utf8");
-    assert.match(report, /Session2OSS evidence report/);
+    assert.match(report, /ContributionLedger evidence report/);
     assert.match(report, /CodeArts image capability mismatch/);
     assert.equal(report.includes("sk-abcdefghijklmnopqrstuvwx123456"), false);
     assert.equal(cases.includes("sk-abcdefghijklmnopqrstuvwx123456"), false);
