@@ -9,7 +9,7 @@ The output is a **ledger**, not a report card. It records what the sessions clai
 ## Pipeline
 
 ```text
-JSONL -> inventory -> rules -> cases -> report.md / cases.json
+JSONL -> inventory -> rules -> cases -> report.md / report.html / cases.json / briefs
 ```
 
 ### Inventory
@@ -19,6 +19,8 @@ JSONL -> inventory -> rules -> cases -> report.md / cases.json
 ### Rules
 
 `src/rules.mjs` contains deterministic rules. A rule is a named `test(text)` plus a component and symptom. Rules should be narrow: a false upstream report is worse than a missed lead.
+
+`src/rule-file.mjs` adds declarative JSON rules for other stacks. They support `all`/`any`/`none` string matching and cannot execute code. A custom rule with the same `id` replaces a built-in rule; `--rules-only` skips the built-ins.
 
 ### Extraction
 
@@ -37,7 +39,12 @@ JSONL -> inventory -> rules -> cases -> report.md / cases.json
 
 ### Rendering
 
-`src/render.mjs` emits a queue and per-case evidence. It does not render the original summary.
+`src/render.mjs` emits a Markdown queue and per-case evidence.
+`src/render-html.mjs` emits a self-contained HTML report with the same data.
+`src/brief.mjs` emits one issue-ready brief per case, including the evidence
+table, upstream references, contradictions, an issue draft, and a checklist.
+Neither renderer includes the original summary unless `--excerpts` is used; even
+then, excerpts are redacted and truncated.
 
 ## Stage model
 
@@ -50,9 +57,10 @@ The highest reported stage wins for the queue. This is a historical claim, not a
 
 ## Privacy model
 
-- Raw summaries are processed in memory and discarded.
+- Raw summaries are processed in memory and discarded by default.
 - Topics and session titles are redacted before they are written to `cases.json`.
-- The report shows only privacy flag names.
+- `--excerpts` is opt-in: excerpts are redacted, truncated, and clearly marked.
+- The report shows only privacy flag names unless excerpts are explicitly enabled.
 - Tests use a synthetic fixture. Real inventories should stay outside the repository.
 
 ## Deliberate non-goals

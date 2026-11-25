@@ -50,6 +50,7 @@ export function renderReport(cases, meta) {
     lines.push(`## ${index + 1}. ${item.title}`);
     lines.push("");
     lines.push(`- Case id: \`${item.id}\``);
+    lines.push(`- Case brief: \`briefs/${item.id}.md\``);
     lines.push(`- Component: ${item.component}`);
     lines.push(`- Sessions: ${item.sessions.length}`);
     lines.push(`- Occurrences: ${item.occurrences}`);

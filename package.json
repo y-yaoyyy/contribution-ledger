@@ -1,6 +1,6 @@
 {
   "name": "contributionledger",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Offline evidence ledger that turns engineering session summaries into reviewable OSS contribution cases.",
   "type": "module",
   "bin": {
@@ -13,12 +13,16 @@
     "bin",
     "src",
     "docs",
+    "demo",
+    "schema",
+    "scripts",
     "README*.md",
     "LICENSE"
   ],
   "scripts": {
     "test": "node --test",
-    "check": "node --check bin/contributionledger.mjs && node --check src/cli.mjs && node --check src/inventory.mjs && node --check src/rules.mjs && node --check src/extract.mjs && node --check src/cluster.mjs && node --check src/render.mjs && node --check src/privacy.mjs"
+    "check": "node scripts/check.mjs",
+    "demo": "node bin/contributionledger.mjs --demo"
   },
   "engines": {
     "node": ">=22"

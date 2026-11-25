@@ -41,7 +41,18 @@ function scoreCase(item) {
   return sessionBonus + localBonus + upstreamBonus + contradictionBonus + item.occurrences;
 }
 
-export function analyzeSessions(sessions, { rules = DEFAULT_RULES, minSessions = 1 } = {}) {
+function excerptOf(block) {
+  const text = redactSensitive(String(block.summary ?? ""))
+    .replace(/\s+/g, " ")
+    .trim();
+  if (text === "") return null;
+  return text.length > 320 ? `${text.slice(0, 317)}...` : text;
+}
+
+export function analyzeSessions(
+  sessions,
+  { rules = DEFAULT_RULES, minSessions = 1, includeExcerpts = false } = {},
+) {
   const byId = new Map();
 
   for (const session of sessions) {
@@ -96,6 +107,7 @@ export function analyzeSessions(sessions, { rules = DEFAULT_RULES, minSessions =
             topic: redactSensitive(block.topic),
             reportedStage: stage,
             sourceLine: session.sourceLine,
+            ...(includeExcerpts ? { excerpt: excerptOf(block) } : {}),
           });
         }
 
