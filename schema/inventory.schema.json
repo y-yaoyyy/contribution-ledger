@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/y-yaoyyy/contribution-ledger/schema/inventory.schema.json",
+  "title": "ContributionLedger inventory line",
+  "description": "One JSONL line accepted by ContributionLedger. Supply blockDetails or blocks.",
+  "type": "object",
+  "required": ["id"],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "title": { "type": "string" },
+    "model": { "type": "string" },
+    "requests": { "type": "number", "minimum": 0 },
+    "lastSeen": { "type": ["string", "null"] },
+    "blockDetails": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/block" }
+    },
+    "blocks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/block" }
+    }
+  },
+  "oneOf": [
+    { "required": ["blockDetails"] },
+    { "required": ["blocks"] }
+  ],
+  "$defs": {
+    "block": {
+      "type": "object",
+      "properties": {
+        "topic": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "text": { "type": "string" },
+        "createdAt": { "type": ["string", "null"] }
+      },
+      "anyOf": [
+        { "required": ["topic"] },
+        { "required": ["title"] },
+        { "required": ["summary"] },
+        { "required": ["text"] }
+      ]
+    }
+  }
+}

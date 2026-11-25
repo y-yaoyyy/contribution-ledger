@@ -1,5 +1,7 @@
 # ContributionLedger
 
+> English is the canonical version. This translation may lag behind the latest features.
+
 [English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | 한국어 | [Español](README.es.md)
 
 압축된 엔지니어링 세션 요약을 검토 가능한 오픈소스 기여 장부로 변환합니다.

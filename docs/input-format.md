@@ -23,7 +23,7 @@ Required:
 
 - `id` — non-empty string, unique within the file.
 - one of `blockDetails` or `blocks` — array.
-- each block needs `topic` and `summary`.
+- each block needs a topic (`topic` or `title`) and a summary (`summary` or `text`).
 
 Optional:
 
@@ -33,7 +33,11 @@ Optional:
 - `lastSeen`
 - `createdAt`
 
-Unknown fields are ignored.
+Unknown fields are ignored. The machine-readable contract is
+[`schema/inventory.schema.json`](../schema/inventory.schema.json). A
+billion-context exporter is available at
+[`scripts/export-billion-context.mjs`](../scripts/export-billion-context.mjs);
+see [export-billion-context.md](export-billion-context.md).
 
 ## Block object
 

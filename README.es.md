@@ -1,5 +1,7 @@
 # ContributionLedger
 
+> English is the canonical version. This translation may lag behind the latest features.
+
 [English](README.md) | [简体中文](README.zh-CN.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | Español
 
 Convierte resúmenes comprimidos de sesiones de ingeniería en un registro revisable de posibles contribuciones de código abierto.

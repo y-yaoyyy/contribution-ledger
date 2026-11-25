@@ -1,5 +1,9 @@
 node_modules/
 contributionledger-out/
+contributionledger-demo/
+/sessions.jsonl
+/sessions-*.jsonl
+/*.tgz
 *.log
 .DS_Store
 coverage/

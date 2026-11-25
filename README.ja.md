@@ -1,5 +1,7 @@
 # ContributionLedger
 
+> English is the canonical version. This translation may lag behind the latest features.
+
 [English](README.md) | [简体中文](README.zh-CN.md) | 日本語 | [한국어](README.ko.md) | [Español](README.es.md)
 
 圧縮されたエンジニアリングセッションの要約を、レビュー可能なオープンソース貢献の台帳に変換します。

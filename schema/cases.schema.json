@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/y-yaoyyy/contribution-ledger/schema/cases.schema.json",
+  "title": "ContributionLedger cases.json",
+  "type": "object",
+  "required": ["schemaVersion", "toolVersion", "generatedAt", "inputName", "inputSha256", "summary", "privacy", "cases"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "toolVersion": { "type": "string" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "inputName": { "type": "string" },
+    "inputSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "excerptsIncluded": { "type": "boolean" },
+    "rulesName": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "required": ["sessions", "blocks", "cases", "withUpstreamRefs", "withLocalFix", "withContradictions"],
+      "properties": {
+        "sessions": { "type": "integer", "minimum": 0 },
+        "blocks": { "type": "integer", "minimum": 0 },
+        "cases": { "type": "integer", "minimum": 0 },
+        "withUpstreamRefs": { "type": "integer", "minimum": 0 },
+        "withLocalFix": { "type": "integer", "minimum": 0 },
+        "withContradictions": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "privacy": {
+      "type": "object",
+      "required": ["rawSummaryTextIncluded", "excerptsIncluded", "note"],
+      "properties": {
+        "rawSummaryTextIncluded": { "type": "boolean" },
+        "excerptsIncluded": { "type": "boolean" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "cases": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/case" }
+    }
+  },
+  "$defs": {
+    "ref": {
+      "type": "object",
+      "required": ["url", "kind", "repo", "number"],
+      "properties": {
+        "url": { "type": "string", "format": "uri" },
+        "kind": { "enum": ["issue", "pull"] },
+        "repo": { "type": "string" },
+        "number": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["sessionId", "sessionTitle", "blockIndex", "topic", "reportedStage", "sourceLine"],
+      "properties": {
+        "sessionId": { "type": "string" },
+        "sessionTitle": { "type": "string" },
+        "blockIndex": { "type": "integer", "minimum": 0 },
+        "topic": { "type": "string" },
+        "reportedStage": { "type": "string" },
+        "sourceLine": { "type": "integer", "minimum": 1 },
+        "excerpt": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "case": {
+      "type": "object",
+      "required": ["id", "component", "symptom", "title", "sessions", "occurrences", "evidence", "stages", "contradictions", "upstreamRefs", "sensitivityFlags", "reportedStage", "nextManualAction", "score"],
+      "properties": {
+        "id": { "type": "string" },
+        "component": { "type": "string" },
+        "symptom": { "type": "string" },
+        "title": { "type": "string" },
+        "sessions": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "occurrences": { "type": "integer", "minimum": 1 },
+        "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } },
+        "stages": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "contradictions": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "upstreamRefs": { "type": "array", "items": { "$ref": "#/$defs/ref" } },
+        "sensitivityFlags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "reportedStage": { "type": "string" },
+        "nextManualAction": { "type": "string" },
+        "score": { "type": "number" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
